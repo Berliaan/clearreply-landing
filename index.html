@@ -5,6 +5,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ClearReply — Reply To A High-Conflict Co-Parent In 60 Seconds</title>
 <meta name="description" content="An AI tool that helps you write calm, safe, fact-based replies to a high-conflict co-parent in under 60 seconds.">
+
+<!-- Meta Pixel Code (ClearReply Pixel, ID 5233383200136281) -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '5233383200136281');
+fbq('track', 'PageView');
+fbq('track', 'ViewContent', {content_name: 'ClearReply', content_type: 'product', value: 27.00, currency: 'USD'});
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=5233383200136281&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
 <style>
   :root{
     --ink:#334155; --accent:#44546A; --sage:#5B7B6F; --light:#8A94A3; --rule:#CBD5E1;
@@ -216,7 +236,19 @@
 
 <!-- Checkout: Gumroad hosted product "ClearReply — AI Reply Tool for High-Conflict Co-Parenting Messages"
      (https://berliaan5.gumroad.com/l/hyxvqy, $27). The ?wanted=true param on each CTA link opens the
-     checkout form directly instead of the product page — no embed script needed. -->
+     checkout form directly instead of the product page — no embed script needed.
+     Gumroad's checkout page is off this domain, so the Meta Pixel here can't see InitiateCheckout/Purchase
+     directly. We fire InitiateCheckout on CTA click (best-effort, since the click also navigates away)
+     as a partial signal; Purchase tracking needs a separate CAPI bridge (see cek-kesiapan-launch notes). -->
+<script>
+document.querySelectorAll('.cta-btn').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    if (typeof fbq === 'function') {
+      fbq('track', 'InitiateCheckout', {content_name: 'ClearReply', value: 27.00, currency: 'USD'});
+    }
+  });
+});
+</script>
 
 </body>
 </html>
